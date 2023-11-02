@@ -1,16 +1,17 @@
-//Inserisco le immagini nel DOM
+//Percorsi delle immagini che voglio inserire
 imagesPath = [
     "https://picsum.photos/id/101/900/400",
     "https://picsum.photos/id/102/900/400",
     "https://picsum.photos/id/103/900/400"
 ];
 
-let imagesHtml = "";
+//Inserisco le immagini nel DOM
+let immaginiDaInserire = "";
 for (let i = 0; i < imagesPath.length; i++) {
-    const imagePath = imagesPath[i];
-    imagesHtml += `<img src="${imagePath}">`;
+    const percorsoImmagine = imagesPath[i];
+    immaginiDaInserire += `<img src="${percorsoImmagine}">`;
 }
-document.getElementById("carousel-wrapper").innerHTML = imagesHtml;
+document.getElementById("carousel-wrapper").innerHTML = immaginiDaInserire;
 
 //Imposto la prima immagine come attiva
 let currentImg = 0;
@@ -25,19 +26,6 @@ document.getElementById("nextBtn").addEventListener("click", function () {
         currentImg++;
         images[currentImg].classList.add("active");
     }
-
-    // Versione alternativa con ciclo for
-    // currentImg++;
-
-    // for (let i = 0; i < images.length; i++) {
-    //     const image = images[i];
-
-    //     if (i == currentImg) {
-    //         image.classList.add("active");
-    //     } else {
-    //         image.classList.remove("active");
-    //     }
-    // }
 });
 
 document.getElementById("prevBtn").addEventListener("click", function () {
@@ -46,5 +34,21 @@ document.getElementById("prevBtn").addEventListener("click", function () {
         images[currentImg].classList.remove("active");
         currentImg--;
         images[currentImg].classList.add("active");
+    }
+});
+
+//Versione alternativa di "avanti", ma con ciclo for inutile
+document.getElementById("altroNextBtn").addEventListener("click", function () {
+    console.log("avanti");
+    currentImg++;
+
+    for (let i = 0; i < images.length; i++) {
+        const image = images[i];
+
+        if (i == currentImg) {
+            image.classList.add("active");
+        } else {
+            image.classList.remove("active");
+        }
     }
 });
